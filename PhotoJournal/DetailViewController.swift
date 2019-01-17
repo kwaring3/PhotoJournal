@@ -11,7 +11,7 @@ import UIKit
 class DetailViewController: UIViewController {
     var indexNum: Int!
     public var photoHolder: Post?
-private var imagePicker: UIImagePickerController!
+    private var imagePicker: UIImagePickerController!
     private var descriptionText = "Description..."
     
     @IBOutlet var tapGesture: UITapGestureRecognizer!
@@ -27,9 +27,12 @@ private var imagePicker: UIImagePickerController!
         if let data = photoHolder {
             titleTextView.text = data.title
             imageView.image = UIImage.init(data: data.imageData)
+            imageSelected = imageView.image
             titleTextView.textColor = .black
             
-            
+        } else {
+            setupTextViews()
+            imageSelected = imageView.image
         }
         
     }
@@ -69,6 +72,9 @@ private var imagePicker: UIImagePickerController!
         titleTextView.resignFirstResponder()
     }
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
+        if let deleteFile = indexNum {
+            PhotoJournalModel.removePost(index: deleteFile)
+        }
         guard let textTitle = titleTextView.text else {
             fatalError("nil")}
             let date = Date()

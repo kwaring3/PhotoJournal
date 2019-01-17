@@ -44,6 +44,7 @@ class ViewController: UIViewController {
             
             destinationViewController.modalPresentationStyle = .currentContext
             destinationViewController.photoHolder = self.phtot[sender.tag]
+            destinationViewController.indexNum = sender.tag
             self.present(destinationViewController, animated: true, completion: nil)
         }
         
