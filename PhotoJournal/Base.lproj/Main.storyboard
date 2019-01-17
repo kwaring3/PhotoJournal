@@ -154,7 +154,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="BnQ-so-NUu"/>
-                                    <barButtonItem systemItem="camera" id="LNN-ja-zld"/>
+                                    <barButtonItem systemItem="camera" id="LNN-ja-zld">
+                                        <connections>
+                                            <action selector="cameraButtonPressed:" destination="Lfc-dB-ZsI" id="9Ww-Fr-8FC"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5aG-6i-pWk">

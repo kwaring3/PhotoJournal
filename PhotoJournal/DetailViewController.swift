@@ -65,6 +65,11 @@ class DetailViewController: UIViewController {
         imagePicker.sourceType = .photoLibrary
         showImagePickerController()
     }
+    @IBAction func cameraButtonPressed(_ sender: UIBarButtonItem) {
+        imagePicker.sourceType = .camera
+        showImagePickerController()
+        
+    }
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
