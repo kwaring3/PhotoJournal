@@ -69,6 +69,9 @@
                                                     <rect key="frame" x="325" y="197" width="30" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <state key="normal" title=". . ."/>
+                                                    <connections>
+                                                        <action selector="alertItemsSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LaY-X7-Z2Z"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </view>
@@ -88,6 +91,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="dateLabel" destination="9DR-8S-BG6" id="bS6-UA-2P5"/>
+                                            <outlet property="editButton" destination="TRr-nI-wqi" id="yZZ-QA-O8k"/>
                                             <outlet property="imageView" destination="WIE-T8-yK7" id="xP0-BL-GnA"/>
                                             <outlet property="titleLabel" destination="pFk-IE-7pI" id="ZG1-s4-e3l"/>
                                         </connections>
@@ -119,7 +123,7 @@
         <!--Detail View Controller-->
         <scene sceneID="Fz2-qu-53R">
             <objects>
-                <viewController id="Lfc-dB-ZsI" customClass="DetailViewController" customModule="PhotoJournal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailVC" id="Lfc-dB-ZsI" customClass="DetailViewController" customModule="PhotoJournal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pIu-ef-cdl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -167,6 +171,7 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="rl1-cU-mMi" firstAttribute="trailing" secondItem="hlq-QZ-WIg" secondAttribute="trailing" id="4Wv-Sy-xoa"/>
                             <constraint firstItem="LGB-qx-dOl" firstAttribute="top" secondItem="5aG-6i-pWk" secondAttribute="bottom" id="4uR-Ad-OF0"/>
@@ -184,13 +189,22 @@
                             <constraint firstItem="5aG-6i-pWk" firstAttribute="leading" secondItem="8Zl-zM-0un" secondAttribute="leading" id="z8Z-h0-Jkh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8Zl-zM-0un"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="uMz-Ey-jth" appends="YES" id="Ccp-5o-Mkb"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="LGB-qx-dOl" id="BOS-qi-CVY"/>
+                        <outlet property="tapGesture" destination="uMz-Ey-jth" id="czn-B8-aq7"/>
                         <outlet property="titleTextView" destination="5aG-6i-pWk" id="nZF-nM-ZhF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="piV-vp-jmo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="uMz-Ey-jth">
+                    <connections>
+                        <action selector="tapped:" destination="Lfc-dB-ZsI" id="hkK-46-cYr"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2276" y="134"/>
         </scene>

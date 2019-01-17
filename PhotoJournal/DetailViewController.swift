@@ -9,8 +9,12 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    var indexNum: Int!
+    public var photoHolder: Post?
 private var imagePicker: UIImagePickerController!
+    private var descriptionText = "Description..."
     
+    @IBOutlet var tapGesture: UITapGestureRecognizer!
     @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var imageView: UIImageView!
     var imageSelected: UIImage!
@@ -19,6 +23,14 @@ private var imagePicker: UIImagePickerController!
         super.viewDidLoad()
         //updateUI()
         setupImagePickerViewController()
+        setupTextViews()
+        if let data = photoHolder {
+            titleTextView.text = data.title
+            imageView.image = UIImage.init(data: data.imageData)
+            titleTextView.textColor = .black
+            
+            
+        }
         
     }
 //    private func updateUI() {
@@ -29,6 +41,12 @@ private var imagePicker: UIImagePickerController!
 //            print("blah")
 //        }
 //    }
+    
+    private func setupTextViews() {
+        titleTextView.text = descriptionText
+        titleTextView.textColor = .lightGray
+        titleTextView.delegate = self
+    }
     private func setupImagePickerViewController() {
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -47,6 +65,9 @@ private var imagePicker: UIImagePickerController!
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
+    @IBAction func tapped(_ sender: UITapGestureRecognizer) {
+        titleTextView.resignFirstResponder()
+    }
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
         guard let textTitle = titleTextView.text else {
             fatalError("nil")}
@@ -60,6 +81,8 @@ private var imagePicker: UIImagePickerController!
             PhotoJournalModel.addPhoto(photo: photo)
             dismiss(animated: true, completion: nil)
             
+        } else {
+            dismiss(animated: true, completion: nil)
         }
     }
     
@@ -87,6 +110,14 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate{
             print("nil")
         }
         dismiss(animated: true, completion: nil)
+    }
+}
+extension DetailViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if titleTextView.text == descriptionText {
+            titleTextView.text = ""
+            titleTextView.textColor = .black
+        }
     }
 }
 

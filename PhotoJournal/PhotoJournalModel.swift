@@ -47,5 +47,9 @@ final class PhotoJournalModel {
         savePhotoJournal()
     }
     
-    
+    static func removePost(index: Int) {
+        photoJournal.remove(at: index)
+        savePhotoJournal()
+        
+    }
 }
